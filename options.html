@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mailto Router</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <h1>Mailto Router</h1>
+  <p class="lead">Email links open in the provider marked as default. Each provider is a URL template with
+    <code>{to}</code> <code>{cc}</code> <code>{bcc}</code> <code>{subject}</code> <code>{body}</code>
+    placeholders. Values are URL-encoded; use <code>{raw:subject}</code> etc. for unencoded, or
+    <code>{mailto}</code> for the whole original link. Parameters left empty are dropped.</p>
+
+  <h2>Providers</h2>
+  <div class="panel">
+    <div id="list"></div>
+    <div class="row">
+      <button id="add">Add provider</button>
+      <button id="reset" class="danger">Restore built-in list</button>
+      <span class="status" id="status"></span>
+    </div>
+  </div>
+
+  <h2>Behavior</h2>
+  <div class="panel">
+    <label class="check"><input type="checkbox" id="ask"> Ask which provider to use every time</label>
+  </div>
+
+  <h2>Try it</h2>
+  <div class="panel">
+    <input type="text" id="sample" class="tpl"
+      value="mailto:alice@example.com?cc=bob@example.com&amp;subject=Hello%20there&amp;body=Line%20one%0D%0ALine%20two">
+    <div class="preview" id="preview"></div>
+    <div class="row">
+      <button id="open" class="primary">Open with default</button>
+      <a id="realLink" href="#">Click a real mailto link</a>
+      <span class="muted">(tests the Firefox handler setting)</span>
+    </div>
+  </div>
+
+  <h2>Make Firefox use it</h2>
+  <div class="panel">
+    <p style="margin-top:0">Open Firefox <b>Settings → General → Applications</b>, search for <b>mailto</b>, and choose
+    <b>Use Mailto Router</b>. If it isn't listed, click a mailto link once (the one above works) and pick
+    Mailto Router in the dialog.</p>
+  </div>
+</main>
+
+<template id="rowTpl">
+  <div class="provider">
+    <input type="radio" name="def" title="Use as default">
+    <div class="fields">
+      <input type="text" class="name" placeholder="Name, e.g. AOL Mail">
+      <input type="text" class="tpl" placeholder="https://example.com/compose?to={to}&amp;subject={subject}&amp;body={body}">
+    </div>
+    <div class="actions">
+      <button class="icon up" title="Move up">↑</button>
+      <button class="icon down" title="Move down">↓</button>
+      <button class="icon del danger" title="Remove">✕</button>
+    </div>
+  </div>
+</template>
+
+<script src="common.js"></script>
+<script src="options.js"></script>
+</body>
+</html>

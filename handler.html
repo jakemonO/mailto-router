@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Open email</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main id="app" hidden>
+    <h1>Open this email with…</h1>
+    <p class="lead" id="hint"></p>
+    <div class="panel">
+      <dl class="summary" id="summary"></dl>
+    </div>
+    <div class="choose" id="choices"></div>
+    <label class="check" style="margin-top:14px"><input type="checkbox" id="remember"> Use this provider from now on</label>
+    <p class="row"><a href="options.html" target="_blank">Edit providers</a></p>
+  </main>
+  <script src="common.js"></script>
+  <script src="handler.js"></script>
+</body>
+</html>
